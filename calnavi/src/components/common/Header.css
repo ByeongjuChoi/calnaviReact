@@ -1,0 +1,51 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center; /* 로고를 가운데로 정렬 */
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  padding: 24px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.logo {
+  height: 40px;
+  cursor: pointer;
+}
+
+.logout-button {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+.username-label {
+  position: absolute;
+  right: 140px; /* 로그아웃 버튼보다 충분히 왼쪽에 위치 */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e0f7fa;
+  color: #2c3e50;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}

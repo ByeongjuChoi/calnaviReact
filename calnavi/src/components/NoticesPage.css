@@ -1,0 +1,49 @@
+.notices-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.notice-date {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.notice-title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.notice-content {
+  margin-top: 5px;
+  white-space: pre-wrap;
+}
+
+.notice-header {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notices-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.back-button {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #c62828;
+}

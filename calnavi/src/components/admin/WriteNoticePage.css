@@ -1,0 +1,21 @@
+.write-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.write-container label {
+  font-weight: bold;
+}
+
+.write-container input,
+.write-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.write-container button {
+  padding: 8px 16px;
+  font-size: 16px;
+}
