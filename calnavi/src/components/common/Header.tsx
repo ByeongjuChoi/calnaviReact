@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
+import api from '../../api';
 import { getToken, getTokenRemainingTime } from '../../auth';
 import './Header.css';
 const Header: React.FC = () => {
@@ -40,11 +40,8 @@ const Header: React.FC = () => {
       history.push("/login");
       return;
     }
-    axios
-      .post("http://localhost:8080/api/logout", {}, { 
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    api
+      .post("/api/logout", {}, { 
         withCredentials: true 
       })
       .then(() => {

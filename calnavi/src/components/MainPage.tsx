@@ -1,8 +1,8 @@
 import { Megaphone, Clock, FileText, Wallet, BookOpen, ClipboardList, FileSignature, ReceiptText } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
-import axios from "axios";
 import "./MainPage.css";
+import api from "../api";
 
 interface Announcement {
   id: number;
@@ -41,11 +41,8 @@ export default function MainPage() {
   useEffect(() => {
     // 공지사항 데이터를 불러오기
     const token = sessionStorage.getItem('token');
-    axios
-      .get(`http://localhost:8080/api/main/Mainnotices?MainOrAll=M`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    api
+      .get(`/api/main/Mainnotices?MainOrAll=M`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -59,11 +56,8 @@ export default function MainPage() {
 
   const handlenotice = (id: number) => {
     const token = sessionStorage.getItem('token');
-    axios
-      .get(`http://localhost:8080/api/main/Allnotices?id=${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    api
+      .get(`/api/main/Allnotices?id=${id}`, {
         withCredentials: true,
       })
       .then(() => {
