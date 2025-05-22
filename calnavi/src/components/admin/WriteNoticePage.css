@@ -2,20 +2,76 @@
   max-width: 600px;
   margin: auto;
   padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .write-container label {
   font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
 }
 
 .write-container input,
 .write-container textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  font-family: inherit;
 }
 
-.write-container button {
-  padding: 8px 16px;
+.write-container input:focus,
+.write-container textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+}
+
+.error {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 12px 0;
   font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: inherit;
+}
+
+.button-group button:first-child {
+  background-color: #27ae60;
+  color: white;
+}
+
+.button-group button:first-child:hover {
+  background-color: #1f8f4c;
+}
+
+.button-group button:last-child {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+.button-group button:last-child:hover {
+  background-color: #95a5a6;
 }

@@ -84,7 +84,7 @@ const Header: React.FC = () => {
       <img src="/images/calnavi.png" alt="CAL Navi" className="logo" onClick={() => moveMain()} />
       {username && (
         <span className="username-label">
-          {username} 様（残り時間: {formatTime(remainingTime)}秒）
+          {username} 様（{formatTime(remainingTime)}秒）
         </span>
       )}
       <button className="logout-button" onClick={handleLogout}>

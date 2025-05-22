@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
+import "./AdminNoticesPage.css";
 
 interface Announcement {
     id: number;
@@ -25,20 +26,32 @@ const AdminNoticesPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="admin-notice">
-            <h1>공지사항 페이지</h1>
+        <div className="admin-notice-container">
+            <h1 className="admin-notice-header">공지사항 관리</h1>
 
             <ul className="notice-list">
-                {notices.map((notice) => (
+                {notices.map(notice => (
                 <li key={notice.id} className="notice-item">
-                    <span className="notice-date">{new Date(notice.updatedAt).toLocaleDateString("ja-JP")}</span>
+                    <span className="notice-date">
+                    {new Date(notice.updatedAt).toLocaleDateString("ja-JP", { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                    </span>
                     <span className="notice-title">{notice.title}</span>
+                    <button
+                        className="notice-edit-btn"
+                        onClick={() => history.push(`/WriteNoticePage?id=${notice.id}`)}
+                        aria-label={`공지사항 ${notice.title} 수정`}
+                    >
+                    수정
+                    </button>
                 </li>
                 ))}
             </ul>
-            <button onClick={() => history.push("/writeNoticePage")}>글쓰기</button>
+
+            <button className="notice-write-btn" onClick={() => history.push("/writeNoticePage")}>
+                글쓰기
+            </button>
         </div>
-    );
+  );
 };
 
 export default AdminNoticesPage;
