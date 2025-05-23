@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import "./AdminNoticesPage.css";
+import api from "../../api";
 
 interface Announcement {
     id: number;
@@ -25,6 +26,25 @@ const AdminNoticesPage: React.FC = () => {
         .catch(() => alert("공지사항 불러오기 실패"))
     }, []);
 
+    const handleDelete = (id: number) => {
+
+        if (!window.confirm("정말로 이 공지사항을 삭제하시겠습니까？")) return;
+
+        const token = sessionStorage.getItem('token');
+        const role = sessionStorage.getItem('role');
+        api.post(`/api/admin/notices/delete`, {id}, {
+            headers: {
+                role: role
+            }
+        })
+        .then(() => {
+            setNotices((prev) => prev.filter(notice => notice.id !== id));
+        })
+        .catch((err) => {
+            console.log("err: ", err);
+        });
+    };
+
     return (
         <div className="admin-notice-container">
             <h1 className="admin-notice-header">공지사항 관리</h1>
@@ -42,6 +62,12 @@ const AdminNoticesPage: React.FC = () => {
                         aria-label={`공지사항 ${notice.title} 수정`}
                     >
                     수정
+                    </button>
+                    <button
+                        className="notice-delete-btn"
+                        onClick={() => handleDelete(notice.id)}
+                    >
+                        삭제
                     </button>
                 </li>
                 ))}
