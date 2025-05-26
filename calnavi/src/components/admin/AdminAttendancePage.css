@@ -1,0 +1,82 @@
+.attendance-page {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.attendance-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* 검색 바 스타일 */
+.search-bar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
+}
+
+.search-bar input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 에러 메시지 스타일 */
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* 테이블 스타일 */
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.attendance-table th {
+  background-color: #f2f4f7;
+  font-weight: bold;
+  color: #333;
+}
+
+.attendance-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.attendance-table td {
+  color: #555;
+}
+
+.attendance-table td:last-child {
+  text-align: center;
+}

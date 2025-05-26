@@ -11,6 +11,7 @@ import AdminPage from "./components/admin/AdminPage";
 import UsersPage from './components/admin/UsersPage';
 import AdminNoticesPage from './components/admin/AdminNoticesPage';
 import WriteNoticePage from './components/admin/WriteNoticePage';
+import AdminAttendancePage from './components/admin/AdminAttendancePage';
 import { decodeToken, getTokenRemainingTime } from './auth';
 
 // 자동 로그아웃 체크용 컴포넌트
@@ -118,6 +119,14 @@ const App: React.FC = () => {
           render={() => (
             <Layout>
               <WriteNoticePage />
+            </Layout>
+          )}
+        />
+        <Route
+          path="/AdminAttendancePage"
+          render={() => (
+            <Layout>
+              <AdminAttendancePage />
             </Layout>
           )}
         />

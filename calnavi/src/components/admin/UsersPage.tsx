@@ -11,6 +11,8 @@ interface User {
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -22,6 +24,7 @@ const UsersPage: React.FC = () => {
           },
         });
         setUsers(response.data);
+        setFilteredUsers(response.data);
       } catch (err) {
         setError('사용자 목록을 불러오지 못했습니다.');
       }
@@ -30,10 +33,39 @@ const UsersPage: React.FC = () => {
     fetchUsers();
   }, []);
 
+  // 검색 필터링 함수
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearch(value);
+    if (value === '') {
+      setFilteredUsers(users);
+    } else {
+      setFilteredUsers(
+        users.filter(
+          (user) =>
+            user.userid.toLowerCase().includes(value.toLowerCase()) ||
+            user.username.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    }
+  };
+
   return (
     <div className="user-manage-container">
-      <h1>회원관리</h1>
+      <h1>회원 관리</h1>
       {error && <p className="error">{error}</p>}
+
+      {/* 검색 바 */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="아이디 또는 이름으로 검색..."
+          value={search}
+          onChange={handleSearchChange}
+        />
+      </div>
+
+      {/* 테이블 */}
       <table className="user-table">
         <thead>
           <tr>
@@ -43,7 +75,7 @@ const UsersPage: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <tr key={user.userid}>
               <td>{user.userid}</td>
               <td>{user.username}</td>

@@ -30,7 +30,7 @@ const AdminPage: React.FC = () => {
           <p>공지 등록, 수정, 삭제</p>
         </div>
 
-        <div className="admin-card" onClick={() => history.push('/attendance')}>
+        <div className="admin-card" onClick={() => history.push('/AdminAttendancePage')}>
           <h2>📅 근태상황</h2>
           <p>직원의 출근/퇴근 기록 조회</p>
         </div>
