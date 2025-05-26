@@ -26,7 +26,7 @@ const UsersPage: React.FC = () => {
         setUsers(response.data);
         setFilteredUsers(response.data);
       } catch (err) {
-        setError('사용자 목록을 불러오지 못했습니다.');
+        setError('読み込みに失敗しました。');
       }
     };
 
@@ -52,14 +52,14 @@ const UsersPage: React.FC = () => {
 
   return (
     <div className="user-manage-container">
-      <h1>회원 관리</h1>
+      <h1>会員管理</h1>
       {error && <p className="error">{error}</p>}
 
       {/* 검색 바 */}
       <div className="search-bar">
         <input
           type="text"
-          placeholder="아이디 또는 이름으로 검색..."
+          placeholder="ID,ユーザー名で検索。。。"
           value={search}
           onChange={handleSearchChange}
         />
@@ -69,9 +69,9 @@ const UsersPage: React.FC = () => {
       <table className="user-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>이름</th>
-            <th>권한</th>
+            <th>ユーザーID</th>
+            <th>ユーザー名</th>
+            <th>権限</th>
           </tr>
         </thead>
         <tbody>

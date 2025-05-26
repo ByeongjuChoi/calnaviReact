@@ -47,7 +47,7 @@ const AdminNoticesPage: React.FC = () => {
 
     return (
         <div className="admin-notice-container">
-            <h1 className="admin-notice-header">공지사항 관리</h1>
+            <h1 className="admin-notice-header">お知らせ管理</h1>
 
             <ul className="notice-list">
                 {notices.map(notice => (
@@ -61,20 +61,20 @@ const AdminNoticesPage: React.FC = () => {
                         onClick={() => history.push(`/WriteNoticePage?id=${notice.id}`)}
                         aria-label={`공지사항 ${notice.title} 수정`}
                     >
-                    수정
+                    修正
                     </button>
                     <button
                         className="notice-delete-btn"
                         onClick={() => handleDelete(notice.id)}
                     >
-                        삭제
+                        削除
                     </button>
                 </li>
                 ))}
             </ul>
 
             <button className="notice-write-btn" onClick={() => history.push("/writeNoticePage")}>
-                글쓰기
+                書き
             </button>
         </div>
   );

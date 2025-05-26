@@ -5,6 +5,7 @@ import './AdminAttendancePage.css';
 
 interface userAttendanceInfo{
     userid: string;
+    username: string;
     attendance_cnt: number | null;
     attendance_alltime: string;
     used_vacation: number | null;
@@ -19,19 +20,23 @@ const AdminAttendancePage: React.FC = () => {
     const [error, setError] = useState('');
     const [search, setSearch] = useState('');
 
+    const [year, setYear] = useState<number>(2025);
+    const [month, setMonth] = useState<number>(5);
+
     useEffect(() => {
         const token = sessionStorage.getItem('token');
+        const monthParam = `${year}${month < 10 ? '0' + month : month}`;
         api
-            .get(`/api/admin/attendance/selectUserAttendanceInfo`, {})
+            .get(`/api/admin/attendance/selectUserAttendanceInfo?month=${monthParam}`, {})
             .then((res) => {
                 const data = res.data;
                 setUserInfo(data);
             })
             .catch((err) => {
-                setError('근태 데이터를 불러오는 데 실패했습니다.');
+                setError('勤怠データの読み込みに失敗しました。');
                 console.log("err: ", err);
             });
-    },[]);
+    },[year, month]);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -42,15 +47,43 @@ const AdminAttendancePage: React.FC = () => {
         user.userid.toLowerCase().includes(search.toLowerCase())
     );
 
+    const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setYear(Number(event.target.value));
+    };
+
+    const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setMonth(Number(event.target.value));
+    };
+
     return (
         <div className="attendance-page">
-        <h1>근태 상황</h1>
+        <h1>勤怠管理</h1>
+
+        <div className="filters">
+            <div className="year-month-picker">
+                <select value={year} onChange={handleYearChange}>
+                    {[2023, 2024, 2025, 2026].map((y) => (
+                        <option key={y} value={y}>
+                            {y}年
+                        </option>
+                    ))}
+                </select>
+
+                <select value={month} onChange={handleMonthChange}>
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((m) => (
+                        <option key={m} value={m}>
+                            {m}月
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </div>
         
         {/* 검색 기능 */}
         <div className="search-bar">
             <input
                 type="text"
-                placeholder="아이디로 검색..."
+                placeholder="ID　検索。。。"
                 value={search}
                 onChange={handleSearchChange}
             />
@@ -61,20 +94,22 @@ const AdminAttendancePage: React.FC = () => {
         <table className="attendance-table">
             <thead>
             <tr>
-                <th>유저 아이디</th>
-                <th>근무 일수</th>
-                <th>근무 총 시간</th>
-                <th>사용한 휴일</th>
-                <th>휴일</th>
-                <th>남은 휴일</th>
-                <th>결석 일수</th>
-                <th>평일 일수</th>
+                <th>ユーザーID</th>
+                <th>ユーザー名</th>
+                <th>勤怠日数</th>
+                <th>勤務時間</th>
+                <th>使用した有給</th>
+                <th>有給</th>
+                <th>残る有給</th>
+                <th>欠勤日数</th>
+                <th>今月の勤務日数</th>
             </tr>
             </thead>
             <tbody>
             {filteredData.map((user, index) => (
                 <tr key={index}>
                 <td>{user.userid}</td>
+                <td>{user.username}</td>
                 <td>{user.attendance_cnt ?? 0}</td>
                 <td>{user.attendance_alltime ?? '00:00:00'}</td>
                 <td>{user.used_vacation ?? 0}</td>

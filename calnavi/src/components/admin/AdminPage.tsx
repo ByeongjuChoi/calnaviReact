@@ -9,30 +9,30 @@ const AdminPage: React.FC = () => {
   useEffect(() => {
     const role = sessionStorage.getItem('role');
     if (role !== 'ADMIN') {
-      alert('접근 권한이 없습니다.');
+      alert('権限がございません。');
       history.push('/MainPage'); // 일반 사용자 페이지로 리디렉션
     }
   }, [history]);
 
   return (
     <div className="admin-container">
-      <h1 className="admin-title">관리자 대시보드</h1>
-      <p className="admin-subtitle">관리 항목을 선택하세요.</p>
+      <h1 className="admin-title">管理者ボード</h1>
+      <p className="admin-subtitle">管理項目を選択してください。</p>
 
       <div className="admin-card-container">
         <div className="admin-card" onClick={() => history.push('/UsersPage')}>
-          <h2>👤 회원관리</h2>
-          <p>회원 목록 조회 및 권한 설정</p>
+          <h2>👤 会員管理</h2>
+          <p>会員目録照会および権限設定</p>
         </div>
 
         <div className="admin-card" onClick={() => history.push('/AdminNoticesPage')}>
-          <h2>📢 공지사항 관리</h2>
-          <p>공지 등록, 수정, 삭제</p>
+          <h2>📢 お知らせ管理</h2>
+          <p>お知らせ登録、修正、削除</p>
         </div>
 
         <div className="admin-card" onClick={() => history.push('/AdminAttendancePage')}>
-          <h2>📅 근태상황</h2>
-          <p>직원의 출근/퇴근 기록 조회</p>
+          <h2>📅 勤怠管理</h2>
+          <p>職員の出勤/退勤記録照会</p>
         </div>
       </div>
     </div>
