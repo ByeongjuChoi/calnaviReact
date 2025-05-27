@@ -34,6 +34,11 @@ const AdminPage: React.FC = () => {
           <h2>📅 勤怠管理</h2>
           <p>職員の出勤/退勤記録照会</p>
         </div>
+
+        <div className="admin-card" onClick={() => history.push('/AdminSalaryPage')}>
+          <h2>💲 給与明細管理</h2>
+          <p>給与明細管理/登録</p>
+        </div>
       </div>
     </div>
   );

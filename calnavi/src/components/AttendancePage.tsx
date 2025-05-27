@@ -61,6 +61,12 @@ const AttendancePage = () => {
     return temp;
   };
 
+  const isWeekend = (dateString: string): boolean => {
+    const date = new Date(dateString);
+    const day = date.getDay(); // 0: Sunday, 6: Saturday
+    return day === 0 || day === 6;
+  };
+
   // 출근 기록 불러오기
   const fetchAttendanceRecords = async () => {
     const token = sessionStorage.getItem("token");
@@ -169,7 +175,7 @@ const AttendancePage = () => {
           </select>
       </div>
 
-      <table className="attendance-table">
+      <table className="attendanceUser-table">
           <thead>
           <tr>
               <th>日付</th>
@@ -182,7 +188,7 @@ const AttendancePage = () => {
           </thead>
           <tbody>
           {records.map((record, index) => (
-              <tr key={record.date}>
+              <tr key={record.date} className={isWeekend(record.date) ? "weekend-row" : ""}> 
               <td>{record.date}</td>
               <td>
                   <select value={record.type} onChange={(e) => handleInputChange(index, "type", e.target.value)}>

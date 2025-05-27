@@ -13,6 +13,7 @@ import AdminNoticesPage from './components/admin/AdminNoticesPage';
 import WriteNoticePage from './components/admin/WriteNoticePage';
 import AdminAttendancePage from './components/admin/AdminAttendancePage';
 import { decodeToken, getTokenRemainingTime } from './auth';
+import AdminSalaryPage from './components/admin/AdminSalaryPage';
 
 // 자동 로그아웃 체크용 컴포넌트
 const AuthChecker: React.FC = () => {
@@ -127,6 +128,14 @@ const App: React.FC = () => {
           render={() => (
             <Layout>
               <AdminAttendancePage />
+            </Layout>
+          )}
+        />
+        <Route
+          path="/AdminSalaryPage"
+          render={() => (
+            <Layout>
+              <AdminSalaryPage />
             </Layout>
           )}
         />
