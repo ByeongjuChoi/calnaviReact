@@ -76,6 +76,9 @@ export default function MainPage() {
       case 1:
         history.push("/AttendancePage");
         break;
+      case 2:
+        history.push("/SalaryPage");
+        break;
       default:
         alert("ページの準備中です。");
     }

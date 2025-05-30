@@ -5,6 +5,7 @@ import { error } from "console";
 
 interface userSalInfo {
     userid: string;
+    year_month: string;
     default_sal: number;                    // 기본급
     holyday_sal: number;                    // 법정 휴일 수당	法定休日手当
     night_sal: number;                      // 심야 수당		深夜手当
@@ -40,6 +41,11 @@ const AdminSalaryPage: React.FC = () => {
     const [selectedUserid, setSelectedUserid] = useState<string>("");
     const [userSal, setUserSal] = useState<userSalInfo | null>(null);
     const [total, setTotal] = useState(0);
+    //const [yearMonth, setYearMonth] = useState(`${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`);
+
+    const today = new Date();
+    const [year, setYear] = useState(String(today.getFullYear()));
+    const [month, setMonth] = useState(String(today.getMonth() + 1));
     
     // 유저 세금계산서 변경할때마다 값 저장
     const handleInputChange = (field: keyof userSalInfo, value: number) => {
@@ -91,20 +97,27 @@ const AdminSalaryPage: React.FC = () => {
 
     // 전송버튼
     const handleUserSalInfoSubmit = () => {
+        if(!window.confirm("保存しますか？")) return;
         if (!userSal) return;
-        
-        console.log("userSal: ", userSal);
-        debugger;
 
         const role = sessionStorage.getItem('role');
+        const paddedMonth = String(month).padStart(2, '0');
+        const yearMonth = `${year}-${paddedMonth}`;
+
+        const updatedUserSal = {
+            ...userSal,
+            year_month: yearMonth,
+        };
+
         api
-            .post("/api/admin/usersal/save",userSal, {
+            .post("/api/admin/usersal/save",updatedUserSal, {
                 headers: {
                     role: role,
                 },
             })
             .then(() => {
                 console.log("success");
+                alert("保存出来ました。");
             })
             .catch((error) => {
                 console.log("error: ", error);
@@ -140,6 +153,7 @@ const AdminSalaryPage: React.FC = () => {
         if (!userSal || userSal.userid !== selectedUserid) {
             setUserSal({
                 userid: selectedUserid,
+                year_month: String(year) + "-" + String(month),
                 default_sal: 0,
                 holyday_sal: 0,
                 night_sal: 0,
@@ -186,6 +200,22 @@ const AdminSalaryPage: React.FC = () => {
                     ))}
                 </select>
             </div>
+
+            <div className="select-row">
+                <select value={year} onChange={(e) => setYear(e.target.value)} className="year-select">
+                {[...Array(5)].map((_, idx) => {
+                    const y = today.getFullYear() - 4 + idx;
+                    return <option key={y} value={y}>{y}年</option>;
+                })}
+                </select>
+
+                <select value={month} onChange={(e) => setMonth(e.target.value)} className="month-select">
+                {Array.from({ length: 12 }, (_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}月</option>
+                ))}
+                </select>
+            </div>
+
 
             <section className="salary-section">
                 <h2>合計</h2>
