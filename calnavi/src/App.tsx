@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import './App.css';
 import { BrowserRouter as Router, Route, Switch, useHistory, Redirect } from 'react-router-dom';
+import MouseFollower from './components/MouseFollower';
 import Layout from "./components/Layout";
 import LoginPage from './components/user/LoginPage';
 import SignUpPage from './components/user/SignUpPage';
@@ -51,105 +53,113 @@ const AuthChecker: React.FC = () => {
 };
 
 const App: React.FC = () => {
+
+  useEffect(() => {
+    document.body.style.cursor = 'url("/images/wepon1.png") 0 0, auto';
+    return () => {
+      document.body.style.cursor = 'auto';
+    };
+  }, []);
+
   return (
-    <Router>
-      <AuthChecker />
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/signup" component={SignUpPage} />
-        <Route path="/" exact component={LoginPage} />
+      <Router>
+        <AuthChecker />
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignUpPage} />
+          <Route path="/" exact component={LoginPage} />
 
-        <Route
-          path="/mainPage"
-          render={() => (
-            <Layout>
-              <MainPage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/notices"
-          render={() => (
-            <Layout>
-              <NoticesPage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/NoticeListPage"
-          render={() => (
-            <Layout>
-              <NoticeListPage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/AttendancePage"
-          render={() => (
-            <Layout>
-              <AttendancePage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/SalaryPage"
-          render={() => (
-            <Layout>
-              <SalaryPage />
-            </Layout>
-          )}
-        />
+          <Route
+            path="/mainPage"
+            render={() => (
+              <Layout>
+                <MainPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/notices"
+            render={() => (
+              <Layout>
+                <NoticesPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/NoticeListPage"
+            render={() => (
+              <Layout>
+                <NoticeListPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/AttendancePage"
+            render={() => (
+              <Layout>
+                <AttendancePage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/SalaryPage"
+            render={() => (
+              <Layout>
+                <SalaryPage />
+              </Layout>
+            )}
+          />
 
-        <Route
-          path="/AdminPage"
-          render={() => (
-            <Layout>
-              <AdminPage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/UsersPage"
-          render={() => (
-            <Layout>
-              <UsersPage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/AdminNoticesPage"
-          render={() => (
-            <Layout>
-              <AdminNoticesPage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/WriteNoticePage"
-          render={() => (
-            <Layout>
-              <WriteNoticePage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/AdminAttendancePage"
-          render={() => (
-            <Layout>
-              <AdminAttendancePage />
-            </Layout>
-          )}
-        />
-        <Route
-          path="/AdminSalaryPage"
-          render={() => (
-            <Layout>
-              <AdminSalaryPage />
-            </Layout>
-          )}
-        />
-      </Switch>
-    </Router>
+          <Route
+            path="/AdminPage"
+            render={() => (
+              <Layout>
+                <AdminPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/UsersPage"
+            render={() => (
+              <Layout>
+                <UsersPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/AdminNoticesPage"
+            render={() => (
+              <Layout>
+                <AdminNoticesPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/WriteNoticePage"
+            render={() => (
+              <Layout>
+                <WriteNoticePage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/AdminAttendancePage"
+            render={() => (
+              <Layout>
+                <AdminAttendancePage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/AdminSalaryPage"
+            render={() => (
+              <Layout>
+                <AdminSalaryPage />
+              </Layout>
+            )}
+          />
+        </Switch>
+      </Router>
   );
 };
 
