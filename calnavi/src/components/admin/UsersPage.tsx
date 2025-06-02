@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../../api';
 import './UsersPage.css';
 
 interface User {
@@ -13,12 +13,13 @@ const UsersPage: React.FC = () => {
   const [error, setError] = useState('');
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [search, setSearch] = useState('');
+  const [editNames, setEditNames] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const token = sessionStorage.getItem('token');
-        const response = await axios.get<User[]>('http://localhost:8080/api/admin/allusers', {
+        const response = await api.get<User[]>('/api/admin/allusers', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,6 +51,41 @@ const UsersPage: React.FC = () => {
     }
   };
 
+  const handleInputChange = (userid: string, value: string) => {
+    setEditNames((prev) => ({
+      ...prev,
+      [userid]: value,
+    }));
+  };
+
+  const handleUpdateUserName = (userid: string) => {
+    const newName = editNames[userid];
+    if (!newName) {
+      alert("変更するユーザー名を入力してください。");
+      return;
+    }
+
+    api.
+      post(`/api/admin/updateusername`, { userid, username: newName })
+      .then(() => {
+        alert("ユーザー名が変更されました。");
+        setUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.userid === userid ? { ...user, username: newName } : user
+          )
+        );
+        setFilteredUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.userid === userid ? { ...user, username: newName } : user
+          )
+        );
+      })
+      .catch((error) => {
+        console.error("error", error);
+        alert("ユーザー名の変更に失敗しました。");
+      });
+  }
+
   return (
     <div className="user-manage-container">
       <h1>会員管理</h1>
@@ -72,14 +108,24 @@ const UsersPage: React.FC = () => {
             <th>ユーザーID</th>
             <th>ユーザー名</th>
             <th>権限</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
           {filteredUsers.map((user) => (
             <tr key={user.userid}>
               <td>{user.userid}</td>
-              <td>{user.username}</td>
+              <td>
+                <input
+                  type="text"
+                  value={editNames[user.userid] ?? user.username}
+                  onChange={(e) => handleInputChange(user.userid, e.target.value)}
+                />
+              </td>
               <td>{user.role}</td>
+              <td>
+                <button onClick={() => handleUpdateUserName(user.userid)}>修正</button>
+              </td>
             </tr>
           ))}
         </tbody>

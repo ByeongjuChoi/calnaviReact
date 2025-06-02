@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, useHistory, Redirect } from 'react-router-dom';
-import MouseFollower from './components/MouseFollower';
+import MouseFollower from './components/MouseFollower'; // 마우스 커서 변경 화면인데 마우스를 따라다니는거라 사용안함.
 import Layout from "./components/Layout";
 import LoginPage from './components/user/LoginPage';
 import SignUpPage from './components/user/SignUpPage';
