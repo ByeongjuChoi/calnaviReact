@@ -39,6 +39,11 @@ const AdminPage: React.FC = () => {
           <h2>💲 給与明細管理</h2>
           <p>給与明細管理/登録</p>
         </div>
+
+        <div className="admin-card" onClick={() => history.push('/AdminSimulate')}>
+          <h2>🎆 ガチャ</h2>
+          <p>ガチャ</p>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,106 @@
+.gacha-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.gacha-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.gacha-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gacha-button {
+  padding: 14px 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: url('../../assets/image/genshincursor24.png'), auto;
+}
+
+.gacha-button:hover {
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+  transform: translateY(-3px);
+  cursor: url('../../assets/image/genshincursor24.png'), auto;
+}
+
+.gacha-button.disabled {
+  background: gray;
+  cursor: url('../../assets/image/genshincursor24.png'), auto;
+}
+
+.gacha-cutscene video {
+  width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  margin-bottom: 1.5rem;
+}
+
+.gacha-results {
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 0.5s ease;
+  background: rgba(0,0,0,0.3);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.gacha-results p {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.gacha-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.gacha-result-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.gacha-result-item:hover {
+  transform: scale(1.05);
+}
+
+.gacha-result-item p {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0.5rem 0;
+}
+
+.gacha-result-image {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -20,8 +20,9 @@ const AdminAttendancePage: React.FC = () => {
     const [error, setError] = useState('');
     const [search, setSearch] = useState('');
 
-    const [year, setYear] = useState<number>(2025);
-    const [month, setMonth] = useState<number>(5);
+    const today = new Date();
+    const [year, setYear] = useState<number>(today.getFullYear());
+    const [month, setMonth] = useState<number>(today.getMonth() + 1);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
