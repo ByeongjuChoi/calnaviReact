@@ -162,9 +162,7 @@ const App: React.FC = () => {
           <Route
             path="/AdminSimulate"
             render={() => (
-              <Layout>
                 <AdminSimulate />
-              </Layout>
             )}
           />
         </Switch>

@@ -21,7 +21,7 @@ const AdminSimulate: React.FC = () => {
         { name: '⭐⭐⭐⭐⭐각청', chance: 0.05, image: '/images/gakchung.jpg' },
         { name: '⭐⭐⭐⭐⭐클로린드', chance: 0.05, image: '/images/klorind.png' },
         { name: '⭐⭐⭐⭐세토스', chance: 0.01, image: '/images/setos.jpg' },
-        { name: '✨ㅋㅋ', chance: 0.01, image: '/images/metamong2.jpg' },
+        { name: '⭐⭐⭐꾸짖을 칼!', chance: 0.01, image: '/images/calnavi.png' },
     ];
 
     const [isRolling, setIsRolling] = useState(false);
@@ -52,7 +52,7 @@ const AdminSimulate: React.FC = () => {
         }
 
         setResults(rollResults);
-        etIsRolling(false);
+        setIsRolling(false);
     };
 
     return (
@@ -98,14 +98,36 @@ const AdminSimulate: React.FC = () => {
             {results.length > 0 && !isRolling && (
                 <div className="gacha-results">
                     <p>✨ 뽑기 결과 ✨</p>
-                    <div className="gacha-result-grid">
-                    {results.map((item, index) => (
-                        <div key={index} className="gacha-result-item">
-                        <img src={item.image} alt={item.name} className="gacha-result-image" />
-                        <p>{item.name}</p>
+                    {results.length === 1 ? (
+                        <div className="gacha-result-single">
+                            <img src={results[0].image} alt={results[0].name} className="gacha-result-image-large" />
+                            <p>{results[0].name}</p>
                         </div>
-                    ))}
-                    </div>
+                    ) : (
+                    <>
+                        {/* 위쪽 5개 */}
+                        <div className="gacha-result-grid">
+                            {results.slice(0, 5).map((item, index) => (
+                                <div key={index} className="gacha-result-item">
+                                    <img src={item.image} alt={item.name} className="gacha-result-image" />
+                                    <p>{item.name}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* 아래쪽 5개 (만약 5개 이상일 때만) */}
+                        {results.length > 5 && (
+                            <div className="gacha-result-grid">
+                                {results.slice(5, 10).map((item, index) => (
+                                    <div key={index + 5} className="gacha-result-item">
+                                        <img src={item.image} alt={item.name} className="gacha-result-image" />
+                                        <p>{item.name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </>
+                )}
                 </div>
             )}
         </div>
