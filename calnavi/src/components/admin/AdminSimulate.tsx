@@ -1,4 +1,3 @@
-import api from "../../api";
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './AdminSimulate.css';
@@ -22,6 +21,16 @@ const AdminSimulate: React.FC = () => {
         { name: '⭐⭐⭐⭐⭐클로린드', chance: 0.05, image: '/images/klorind.png' },
         { name: '⭐⭐⭐⭐세토스', chance: 0.01, image: '/images/setos.jpg' },
         { name: '⭐⭐⭐꾸짖을 칼!', chance: 0.01, image: '/images/calnavi.png' },
+    ];
+
+    const items2 = [
+        { name: '⭐⭐⭐⭐⭐김정현', chance: 0.15, image: '/images/skuk.jpg' },
+        { name: '⭐⭐⭐⭐⭐최병주', chance: 0.15, image: '/images/raiden.jpg' },
+        { name: '⭐⭐⭐⭐⭐김유신', chance: 0.15, image: '/images/gannu.jpg' },
+        { name: '⭐⭐⭐⭐⭐양재연', chance: 0.15, image: '/images/chasuka.jpg' },
+        { name: '⭐⭐⭐⭐⭐조성일', chance: 0.15, image: '/images/wepon1.png' },
+        { name: '⭐⭐⭐⭐⭐김태인', chance: 0.15, image: '/images/ayaka.jpg' },
+        { name: '⭐⭐⭐⭐⭐성준혁', chance: 0.15, image: '/images/clre.jpg' },
     ];
 
     const [isRolling, setIsRolling] = useState(false);

@@ -1,0 +1,34 @@
+.roulette-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+canvas {
+  border: 4px solid #333;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #3399ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2878c6;
+}
+
+h3 {
+  margin-top: 10px;
+  color: #333;
+}

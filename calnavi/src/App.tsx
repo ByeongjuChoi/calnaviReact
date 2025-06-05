@@ -18,6 +18,7 @@ import { decodeToken, getTokenRemainingTime } from './auth';
 import AdminSalaryPage from './components/admin/AdminSalaryPage';
 import SalaryPage from './components/SalaryPage';
 import AdminSimulate from './components/admin/AdminSimulate';
+import AdminRulltetPage from './components/admin/AdminRulltetPage';
 
 // 자동 로그아웃 체크용 컴포넌트
 const AuthChecker: React.FC = () => {
@@ -159,10 +160,17 @@ const App: React.FC = () => {
               </Layout>
             )}
           />
+          
           <Route
             path="/AdminSimulate"
             render={() => (
                 <AdminSimulate />
+            )}
+          />
+          <Route
+            path="/AdminRulltetPage"
+            render={() => (
+                <AdminRulltetPage />
             )}
           />
         </Switch>

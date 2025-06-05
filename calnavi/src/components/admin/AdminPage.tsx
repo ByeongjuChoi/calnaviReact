@@ -44,6 +44,11 @@ const AdminPage: React.FC = () => {
           <h2>🎆 ガチャ</h2>
           <p>ガチャ</p>
         </div>
+
+         <div className="admin-card" onClick={() => history.push('/AdminRulltetPage')}>
+          <h2>🎆 룰렛</h2>
+          <p>점심 치우기 룰렛</p>
+        </div>
       </div>
     </div>
   );
