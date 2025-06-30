@@ -19,6 +19,8 @@ import AdminSalaryPage from './components/admin/AdminSalaryPage';
 import SalaryPage from './components/SalaryPage';
 import AdminSimulate from './components/admin/AdminSimulate';
 import AdminRulltetPage from './components/admin/AdminRulltetPage';
+import OtherFormatPage from './components/OtherFormatPage';
+import LibraryPage from './components/LibraryPage';
 
 // 자동 로그아웃 체크용 컴포넌트
 const AuthChecker: React.FC = () => {
@@ -108,6 +110,22 @@ const App: React.FC = () => {
             render={() => (
               <Layout>
                 <SalaryPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/OtherFormatPage"
+            render={() => (
+              <Layout>
+                <OtherFormatPage />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/LibraryPage"
+            render={() => (
+              <Layout>
+                <LibraryPage />
               </Layout>
             )}
           />

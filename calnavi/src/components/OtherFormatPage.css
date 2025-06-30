@@ -1,0 +1,21 @@
+.menu-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.menu-selection-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: url('../assets/image/metamong3.png'), auto;
+}
+
+.menu-selection-card :hover {
+  transform: translateY(-4px);
+  background: #fdf2f2;
+}

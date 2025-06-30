@@ -79,8 +79,15 @@ export default function MainPage() {
       case 2:
         history.push("/SalaryPage");
         break;
+      case 3:
+        history.push("/OtherFormatPage");
+        break;
+      case 4:
+        history.push("/LibraryPage");
+        break;
       default:
         alert("ページの準備中です。");
+        
     }
   };
 
