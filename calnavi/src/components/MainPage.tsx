@@ -85,6 +85,9 @@ export default function MainPage() {
       case 4:
         history.push("/LibraryPage");
         break;
+      case 5:
+        history.push("/UserEmploymentConditionsPage");
+        break;
       default:
         alert("ページの準備中です。");
         

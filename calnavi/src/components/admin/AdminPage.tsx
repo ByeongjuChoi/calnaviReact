@@ -40,6 +40,11 @@ const AdminPage: React.FC = () => {
           <p>給与明細管理/登録</p>
         </div>
 
+        <div className="admin-card" onClick={() => history.push('/AdminEmploymentConditionsPage')}>
+          <h2>💲 就業条件明示書</h2>
+          <p>就業条件明示書管理/登録</p>
+        </div>
+{/* 
         <div className="admin-card" onClick={() => history.push('/AdminSimulate')}>
           <h2>🎆 ガチャ</h2>
           <p>ガチャ</p>
@@ -49,6 +54,7 @@ const AdminPage: React.FC = () => {
           <h2>🎆 룰렛</h2>
           <p>점심 치우기 룰렛</p>
         </div>
+*/}
       </div>
     </div>
   );

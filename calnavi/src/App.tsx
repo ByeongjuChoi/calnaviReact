@@ -21,6 +21,8 @@ import AdminSimulate from './components/admin/AdminSimulate';
 import AdminRulltetPage from './components/admin/AdminRulltetPage';
 import OtherFormatPage from './components/OtherFormatPage';
 import LibraryPage from './components/LibraryPage';
+import AdminEmploymentConditionsPage from './components/admin/AdminEmploymentConditionsPage';
+import UserEmploymentConditionsPage from './components/UserEmploymentConditionsPage';
 
 // 자동 로그아웃 체크용 컴포넌트
 const AuthChecker: React.FC = () => {
@@ -129,6 +131,14 @@ const App: React.FC = () => {
               </Layout>
             )}
           />
+          <Route
+            path="/UserEmploymentConditionsPage"
+            render={() => (
+              <Layout>
+                <UserEmploymentConditionsPage />
+              </Layout>
+            )}
+          />
 
           <Route
             path="/AdminPage"
@@ -178,6 +188,15 @@ const App: React.FC = () => {
               </Layout>
             )}
           />
+           <Route
+            path="/AdminEmploymentConditionsPage"
+            render={() => (
+              <Layout>
+                <AdminEmploymentConditionsPage />
+              </Layout>
+            )}
+          />
+
           
           <Route
             path="/AdminSimulate"
@@ -191,6 +210,7 @@ const App: React.FC = () => {
                 <AdminRulltetPage />
             )}
           />
+         
         </Switch>
       </Router>
   );
