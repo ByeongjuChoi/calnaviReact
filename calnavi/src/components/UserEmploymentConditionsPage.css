@@ -1,4 +1,4 @@
-.empl-container {
+.user-empl-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -8,67 +8,80 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
-.empl-title {
+.user-empl-title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
 }
 
-.empl-select-row {
+.user-empl-select-row {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.empl-year-select,
-.empl-month-select {
+.user-empl-year-select,
+.user-empl-month-select {
   padding: 5px 10px;
   font-size: 14px;
 }
 
-.empl-section {
+.user-empl-section {
   margin-bottom: 30px;
 }
 
-.empl-section h2 {
+.user-empl-section h2 {
   font-size: 18px;
   border-bottom: 2px solid #333;
   padding-bottom: 4px;
   margin-bottom: 10px;
 }
 
-.empl-table {
+.user-empl-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.empl-table td {
+.user-empl-table td {
   border: 1px solid #ccc;
   padding: 8px;
 }
 
-.empl-table td:first-child {
+.user-empl-table td:first-child {
   width: 30%;
   background-color: #f5f5f5;
   font-weight: bold;
 }
 
-.empl-table td:last-child {
+.user-empl-table td:last-child {
   width: 70%;
 }
 
+.back-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background: #d32f2f;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: #ddd;
+}
+
 @media screen and (max-width: 600px) {
-  .empl-container {
+  .user-empl-container {
     padding: 10px;
   }
 
-  .empl-title {
+  .user-empl-title {
     font-size: 20px;
   }
 
-  .empl-table td {
+  .user-empl-table td {
     padding: 6px;
     font-size: 12px;
   }

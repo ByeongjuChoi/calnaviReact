@@ -1,6 +1,7 @@
 import "./SalaryPage.css";
 import api from "../api";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 type UserSAL = {
     default_sal: number;
@@ -35,6 +36,7 @@ const SalaryPage: React.FC = () => {
     const today = new Date();
     const [year, setYear] = useState(today.getFullYear());
     const [month, setMonth] = useState(today.getMonth() + 1);
+    const history = useHistory();
 
     useEffect(() => {
         api
@@ -87,6 +89,11 @@ const SalaryPage: React.FC = () => {
     return (
         <div className="salary-container">
         <h1 className="salary-title">給与明細管理</h1>
+        <div className="button-container">
+            <button className="back-button" onClick={() => history.push("/mainPage")}>
+            ← メインに戻る
+            </button>
+        </div>
 
         <div className="select-row">
             <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="year-select">

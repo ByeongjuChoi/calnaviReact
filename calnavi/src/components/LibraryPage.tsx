@@ -160,6 +160,11 @@ export default function LibraryPage() {
     <div className="main-container">
       <section className="menu-section">
         <h2 className="menu-title">ライブラリー</h2>
+        <div className="button-container">
+            <button className="back-button" onClick={() => history.push("/mainPage")}>
+            ← メインに戻る
+            </button>
+        </div>
         <div className="menu-selection">
           {menus.map((menu, idx) => (
             <div key={idx} className="menu-selection-card" onClick={() => handleMenuClick(menu.no)}>

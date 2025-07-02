@@ -60,12 +60,12 @@ const AuthChecker: React.FC = () => {
 
 const App: React.FC = () => {
 
-  useEffect(() => {
-    document.body.style.cursor = 'url("/images/wepon1.png") 0 0, auto';
-    return () => {
-      document.body.style.cursor = 'auto';
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.cursor = 'url("/images/wepon1.png") 0 0, auto';
+  //   return () => {
+  //     document.body.style.cursor = 'auto';
+  //   };
+  // }, []);
 
   return (
       <Router>

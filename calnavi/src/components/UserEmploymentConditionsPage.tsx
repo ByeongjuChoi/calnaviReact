@@ -1,6 +1,7 @@
 import "./UserEmploymentConditionsPage.css";
 import { useState, useEffect } from "react";
 import api from "../api";
+import { useHistory } from 'react-router-dom';
 
 interface userEmplInfo {
   userid: string;
@@ -49,6 +50,7 @@ const UserEmploymentConditionsPage: React.FC = () => {
   const today = new Date();
   const [year, setYear] = useState(String(today.getFullYear()));
   const [month, setMonth] = useState(String(today.getMonth() + 1));
+  const history = useHistory();
 
   useEffect(() => {
     api
@@ -66,14 +68,19 @@ const UserEmploymentConditionsPage: React.FC = () => {
   }, [year, month]);
 
   return (
-    <div className="empl-container">
-      <h1 className="empl-title">就業条件明示書</h1>
+    <div className="user-empl-container">
+      <h1 className="user-empl-title">就業条件明示書</h1>
+      <div className="button-container">
+          <button className="back-button" onClick={() => history.push("/mainPage")}>
+          ← メインに戻る
+          </button>
+      </div>
 
-      <div className="empl-select-row">
+      <div className="user-empl-select-row">
         <select
           value={year}
           onChange={(e) => setYear(e.target.value)}
-          className="empl-year-select"
+          className="user-empl-year-select"
         >
           {[...Array(5)].map((_, idx) => {
             const y = today.getFullYear() - 4 + idx;
@@ -88,7 +95,7 @@ const UserEmploymentConditionsPage: React.FC = () => {
         <select
           value={month}
           onChange={(e) => setMonth(e.target.value)}
-          className="empl-month-select"
+          className="user-empl-month-select"
         >
           {Array.from({ length: 12 }, (_, i) => (
             <option key={i + 1} value={i + 1}>
@@ -98,9 +105,9 @@ const UserEmploymentConditionsPage: React.FC = () => {
         </select>
       </div>
 
-      <section className="empl-section">
+      <section className="user-empl-section">
         <h2>就業場所</h2>
-        <table className="empl-table">
+        <table className="user-empl-table">
           <tbody>
             <tr>
               <td>名称</td>
@@ -125,9 +132,9 @@ const UserEmploymentConditionsPage: React.FC = () => {
         </table>
       </section>
 
-      <section className="empl-section">
+      <section className="user-empl-section">
         <h2>就業条件等</h2>
-        <table className="empl-table">
+        <table className="user-empl-table">
           <tbody>
             <tr>
               <td>業務内容</td>
