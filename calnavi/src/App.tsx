@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import MouseFollower from './components/MouseFollower'; // 마우스 커서 변경 화면인데 마우스를 따라다니는거라 사용안함.
+import refreshToken from './refreshToken';
 import Layout from "./components/Layout";
 import LoginPage from './components/user/LoginPage';
 import SignUpPage from './components/user/SignUpPage';
@@ -14,7 +15,7 @@ import UsersPage from './components/admin/UsersPage';
 import AdminNoticesPage from './components/admin/AdminNoticesPage';
 import WriteNoticePage from './components/admin/WriteNoticePage';
 import AdminAttendancePage from './components/admin/AdminAttendancePage';
-import { decodeToken, getTokenRemainingTime } from './auth';
+//import { decodeToken, getTokenRemainingTime } from './auth';
 import AdminSalaryPage from './components/admin/AdminSalaryPage';
 import SalaryPage from './components/SalaryPage';
 import AdminSimulate from './components/admin/AdminSimulate';
@@ -24,39 +25,59 @@ import LibraryPage from './components/LibraryPage';
 import AdminEmploymentConditionsPage from './components/admin/AdminEmploymentConditionsPage';
 import UserEmploymentConditionsPage from './components/UserEmploymentConditionsPage';
 
+
+function getTokenRemainingTime(token: string): number {
+  try {
+    const payloadBase64 = token.split('.')[1];
+    const decodedPayload = JSON.parse(atob(payloadBase64));
+    const exp = decodedPayload.exp; // 초 단위
+    const now = Math.floor(Date.now() / 1000);
+    return (exp - now) * 1000; // 밀리초 단위 반환
+  } catch {
+    return 0;
+  }
+}
+
 // 자동 로그아웃 체크용 컴포넌트
+
 const AuthChecker: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
     function logout() {
-      sessionStorage.removeItem('token');
+      sessionStorage.clear();
       history.push('/login');
     }
 
-    function checkToken() {
+    async function checkToken() {
       const token = sessionStorage.getItem('token');
       if (!token) {
         logout();
         return;
       }
+
       const remaining = getTokenRemainingTime(token);
       if (remaining <= 0) {
         logout();
+      } else if (remaining <= 5 * 60 * 1000) {
+        const newToken = await refreshToken(token);
+        if (newToken) {
+          sessionStorage.setItem('token', newToken);
+        } else {
+          logout();
+        }
       }
     }
 
-    // 페이지 진입시 한번 체크
     checkToken();
-
-    // 1분마다 체크
     const intervalId = setInterval(checkToken, 60 * 1000);
 
     return () => clearInterval(intervalId);
   }, [history]);
 
-  return null; // UI 렌더링 안함
+  return null;
 };
+
 
 const App: React.FC = () => {
 

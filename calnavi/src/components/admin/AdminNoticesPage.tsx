@@ -74,7 +74,7 @@ const AdminNoticesPage: React.FC = () => {
             </ul>
 
             <button className="notice-write-btn" onClick={() => history.push("/writeNoticePage")}>
-                書き
+                作成
             </button>
         </div>
   );

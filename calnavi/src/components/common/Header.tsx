@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import api from '../../api';
 import { getToken, getTokenRemainingTime } from '../../auth';
 import './Header.css';
+import logout from '../../logout';
 const Header: React.FC = () => {
   const history = useHistory();
   const [username, setUsername] = useState<string | null>(null);
