@@ -88,7 +88,7 @@ const SalaryPage: React.FC = () => {
 
     return (
         <div className="salary-container">
-        <h1 className="salary-title">給与明細管理</h1>
+        <h1 className="salary-title">給与明細</h1>
         <div className="button-container">
             <button className="back-button" onClick={() => history.push("/mainPage")}>
             ← メインに戻る
